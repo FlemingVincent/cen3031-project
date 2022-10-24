@@ -15,7 +15,7 @@ export const TextField = ({
       <Text style={[tw`text-subheadline mb-[8px]`, labelStyle]}>{label}:</Text>
       <TextInput
         style={[
-          tw`bg-[#76768012] text-subheadline font-semibold px-[8px] py-[14px] rounded-[14px]`,
+          tw`bg-[#ffffff] text-subheadline font-semibold px-[8px] py-[14px] rounded-[8px] border border-[#3c3c4336]`,
           textInputContainerStyle,
         ]}
         autoCapitalize="none"
