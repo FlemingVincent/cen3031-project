@@ -36,6 +36,8 @@ module.exports = {
         darkGray4: "#3a3a3c",
         darkGray5: "#1c1c1e",
         darkGray6: "#0a0a0c",
+        // theme
+        primary: "#3F6EFF"
       },
       fontSize: {
         caption2: [

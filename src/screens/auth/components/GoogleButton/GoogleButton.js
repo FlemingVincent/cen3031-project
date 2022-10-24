@@ -3,24 +3,25 @@ import { Text, TouchableOpacity } from "react-native";
 
 import tw from "src/lib/tailwind";
 
-export const Button = ({
+import GoogleLogoSVG from "src/assets/GoogleLogo.svg"
+
+export const GoogleButton = ({
   containerStyle,
-  label,
-  labelStyle,
   ...TouchableOpacityProps
 }) => {
   return (
     <TouchableOpacity
       style={[
-        tw`bg-primary rounded-[8px] py-[14px] mx-[16px]`,
+        tw`bg-[#fff] rounded-[8px] py-[14px] mx-[16px] flex-row justify-center items-center h-[50px]`,
         containerStyle,
       ]}
       {...TouchableOpacityProps}
     >
+      <GoogleLogoSVG style={tw`mr-[10px]`}/>
       <Text
-        style={[tw`text-body text-white text-center font-semibold`, labelStyle]}
+        style={tw`text-body text-[#80868b] text-center font-semibold`}
       >
-        {label}
+        Continue with Google
       </Text>
     </TouchableOpacity>
   );
