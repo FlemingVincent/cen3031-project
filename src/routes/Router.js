@@ -3,16 +3,19 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { NavigationContainer } from "@react-navigation/native";
+
+import { useAuthContext } from "src/hooks/useAuthContext";
+
 import AuthNavigator from "./AuthNavigator";
 import AppNavigator from "./AppNavigator";
 
 const Router = () => {
-  const isSignedIn = false;
+  const { user } = useAuthContext();
 
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        {isSignedIn ? <AppNavigator /> : <AuthNavigator />}
+        {user ? <AppNavigator /> : <AuthNavigator />}
       </SafeAreaProvider>
     </NavigationContainer>
   );
