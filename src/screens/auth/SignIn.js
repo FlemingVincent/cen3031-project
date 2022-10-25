@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { KeyboardAvoidingView, Text, View, Dimensions } from "react-native";
+import { Text, View } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -10,11 +10,19 @@ import { Button } from "src/components/Button/Button";
 import { TextField } from "src/components/TextField/TextField";
 import { GoogleButton } from "./components/GoogleButton/GoogleButton";
 
+import { useLogin } from "src/hooks/useLogin";
+
 export const SignIn = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const screenWidth = Dimensions.get("screen").width;
+  const { login, error } = useLogin();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await login(email, password);
+  };
 
   return (
     <SafeAreaView style={tw`flex-1 bg-[#fafafa]`}>
@@ -24,7 +32,7 @@ export const SignIn = ({ navigation }) => {
       <Text style={tw`text-body text-lightGray mx-[16px]`}>
         Enter your information below.
       </Text>
-      <View style={tw`flex-1 justify-center mx-[16px]`}>
+      <View style={tw`flex-1 mx-[16px] mt-[40px]`}>
         <TextField
           label="Email"
           containerStyle={tw`mb-[16px]`}
@@ -44,16 +52,19 @@ export const SignIn = ({ navigation }) => {
         >
           Forgot Password?
         </Text>
+        {error && (
+          <Text style={tw`text-caption1 text-lightRed text-center mt-[8px]`}>
+            {error}
+          </Text>
+        )}
       </View>
       <View style={tw`flex-1 justify-end mb-[48px]`}>
         <Button
           containerStyle={tw`mb-[16px]`}
           label="Continue"
-          onPress={() => {
-            console.log(email, password);
-          }}
+          onPress={handleSubmit}
         />
-        <AppleAuthentication.AppleAuthenticationButton
+        {/* <AppleAuthentication.AppleAuthenticationButton
           buttonType={
             AppleAuthentication.AppleAuthenticationButtonType.CONTINUE
           }
@@ -78,14 +89,14 @@ export const SignIn = ({ navigation }) => {
             }
           }}
         />
-        <GoogleButton containerStyle={tw`mt-[16px]`} />
+        <GoogleButton containerStyle={tw`mt-[16px]`} /> */}
         <Text
-          style={tw`text-primary text-body text-center mt-[16px]`}
+          style={tw`text-primary text-body font-semibold text-center mt-[8px]`}
           onPress={() => {
             navigation.navigate("SignUp");
           }}
         >
-          Don't have an account? <Text style={tw`font-semibold`}>Sign Up</Text>
+          Don't have an account? Sign Up
         </Text>
       </View>
     </SafeAreaView>
