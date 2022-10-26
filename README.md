@@ -19,7 +19,6 @@ This is our team's project for CEN3031 - Introduction to Software Engineering.
 4. Create a file named `.env`
 
 5. Add the `BASE_URL` variable
-   Mac users:
    ```
    BASE_URL=localhost
    ```
