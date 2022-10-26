@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ImageBackground } from "react-native";
+import { Text, View } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -13,6 +13,7 @@ import LogoSVG from "src/assets/Logo.svg";
 export const Welcome = ({ navigation }) => {
   return (
     <SafeAreaView style={tw`flex-1 bg-[#fafafa]`}>
+      <BackgroundLogoSVG style={tw`absolute`} />
       <View style={tw`flex-1`}>
         <Text
           style={tw`text-largeTitle font-bold text-primary mt-[64px] mx-[16px] w-1/2`}
