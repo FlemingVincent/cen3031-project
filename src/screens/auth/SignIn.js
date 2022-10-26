@@ -4,11 +4,9 @@ import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import tw from "src/lib/tailwind";
-import * as AppleAuthentication from "expo-apple-authentication";
 
 import { Button } from "src/components/Button/Button";
 import { TextField } from "src/components/TextField/TextField";
-import { GoogleButton } from "./components/GoogleButton/GoogleButton";
 
 import { useLogin } from "src/hooks/useLogin";
 
@@ -64,32 +62,6 @@ export const SignIn = ({ navigation }) => {
           label="Continue"
           onPress={handleSubmit}
         />
-        {/* <AppleAuthentication.AppleAuthenticationButton
-          buttonType={
-            AppleAuthentication.AppleAuthenticationButtonType.CONTINUE
-          }
-          buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-          cornerRadius={8}
-          style={[{ height: 50 }, tw`mx-[16px]`]}
-          onPress={async () => {
-            try {
-              const credential = await AppleAuthentication.signInAsync({
-                requestedScopes: [
-                  AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                  AppleAuthentication.AppleAuthenticationScope.EMAIL,
-                ],
-              });
-              // signed in
-            } catch (e) {
-              if (e.code === "ERR_CANCELED") {
-                // handle that the user canceled the sign-in flow
-              } else {
-                // handle other errors
-              }
-            }
-          }}
-        />
-        <GoogleButton containerStyle={tw`mt-[16px]`} /> */}
         <Text
           style={tw`text-primary text-body font-semibold text-center mt-[8px]`}
           onPress={() => {
