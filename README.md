@@ -8,11 +8,32 @@ This is our team's project for CEN3031 - Introduction to Software Engineering.
    ```sh
    git clone https://github.com/FlemingVincent/cen3031-project.git
    ```
-2. Install packages
+2. Navigate inside the repo.
+   ```sh
+   cd cen3031-project/
+   ```
+3. Install packages
    ```sh
    yarn install
    ```
-3. Run
+4. Create a file named `.env`
+
+5. Add the `BASE_URL` variable
+   Mac users:
+   ```
+   BASE_URL=localhost
+   ```
+   Windows users:
+   1. Open command prompt and run `ipconfig`
+   2. Look at the `IPv4 Address`
+      ```
+      IPv4 Address. . . . . . . . . . : XX.XX.X.XX
+      ```
+   3. This is the address that will be your `BASE_URL`
+      ```
+      BASE_URL=XX.XX.X.XX
+      ```
+6. Run
    ```sh
    expo r -c
    ```
