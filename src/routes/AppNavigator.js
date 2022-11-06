@@ -1,6 +1,7 @@
 import React from "react";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeFocusedSVG from "src/assets/home-focused.svg";
 import HomeUnfocusedSVG from "src/assets/home-unfocused.svg";
@@ -15,10 +16,23 @@ import { Home } from "src/screens/app/Home";
 import { Explore } from "src/screens/app/Explore";
 import { Activity } from "src/screens/app/Activity";
 import { Profile } from "src/screens/app/Profile";
+import { Settings } from "src/screens/app/profile/Settings";
+import { EditSettings } from "src/screens/app/profile/EditSettings";
 
 const Tabs = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="AppTabs" component={AppTabs} />
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="EditSettings" component={EditSettings} />
+    </Stack.Navigator>
+  );
+};
+
+const AppTabs = () => {
   return (
     <Tabs.Navigator
       screenOptions={{

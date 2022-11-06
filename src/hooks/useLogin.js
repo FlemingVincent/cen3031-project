@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { BASE_URL } from "@env";
+import jwt_decode from "jwt-decode";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
@@ -21,6 +22,10 @@ export const useLogin = () => {
       setError(json.error);
     }
     if (response.ok) {
+      // Decode jwt
+      const token = json.token;
+      const userId = jwt_decode(token);
+      json.userId = userId._id;
       // Update AuthContext
       dispatch({ type: "LOGIN", payload: json });
     }
