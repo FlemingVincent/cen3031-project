@@ -1,14 +1,27 @@
 import React from "react";
-import { Text } from "react-native";
-
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, View, TouchableOpacity, Text } from "react-native";
 
 import tw from "src/lib/tailwind";
 
-export const Home = () => {
+import Post from "src/components/Post/Post";
+
+import LogoSVG from "src/assets/logo.svg";
+import PlusSquareSVG from "src/assets/plus-square.svg";
+
+export const Home = ({ navigation }) => {
   return (
-    <SafeAreaView style={tw`flex-1 bg-[#fafafa]`}>
-      <Text>Home</Text>
-    </SafeAreaView>
+    <View style={tw`flex-1 bg-[#fafafa] pt-[63px]`}>
+      <ScrollView>
+        <View
+          style={tw`flex-row items-center justify-between px-[16px] py-[16px]`}
+        >
+          <LogoSVG />
+          <TouchableOpacity onPress={() => navigation.navigate("NewPost")}>
+            <PlusSquareSVG />
+          </TouchableOpacity>
+        </View>
+        <Post />
+      </ScrollView>
+    </View>
   );
 };
