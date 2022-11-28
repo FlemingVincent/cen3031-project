@@ -7,12 +7,15 @@ import tw from "src/lib/tailwind";
 
 import { TextField } from "src/components/TextField/TextField";
 
+import { updateUser } from "src/api/updateUser";
+
 export const EditSettings = ({ navigation, route }) => {
   const { header, userId, data } = route.params;
 
   const [newData, setNewData] = useState("");
 
   const handleSubmit = () => {
+    updateUser(userId, header, newData);
     navigation.goBack();
   };
   return (

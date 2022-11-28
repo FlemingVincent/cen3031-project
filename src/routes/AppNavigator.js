@@ -18,6 +18,7 @@ import { Activity } from "src/screens/app/Activity";
 import { Profile } from "src/screens/app/Profile";
 import { Settings } from "src/screens/app/profile/Settings";
 import { EditSettings } from "src/screens/app/profile/EditSettings";
+import NewPost from "src/screens/app/home/NewPost";
 
 const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ const AppNavigator = () => {
       <Stack.Screen name="AppTabs" component={AppTabs} />
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="EditSettings" component={EditSettings} />
+      <Stack.Screen name="NewPost" component={NewPost} />
     </Stack.Navigator>
   );
 };

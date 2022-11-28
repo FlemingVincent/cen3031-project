@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  Image,
+} from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -10,18 +16,16 @@ import { Button } from "src/components/Button/Button";
 import DefaultProfilePictureSVG from "src/assets/default-profile-picture.svg";
 
 import { useAuthContext } from "src/hooks/useAuthContext";
-import { getUser } from "src/hooks/getUser";
+import { getUser } from "src/api/getUser";
+import Post from "src/components/Post/Post";
 
 export const Profile = ({ navigation }) => {
   const { user } = useAuthContext();
-  const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState("");
 
   const fetchUser = async () => {
-    setLoading(true);
     const data = await getUser(user.userId);
-    setLoading(false);
     if (data.error) {
       setError(data.error);
     } else {
@@ -39,7 +43,7 @@ export const Profile = ({ navigation }) => {
         <>
           <View style={tw`mt-[16px] px-[16px]`}>
             <Text
-              style={tw`text-subheadline text-center font-bold`}
+              style={tw`text-subheadline text-center font-bold capitalize`}
             >{`${profile.firstname} ${profile.lastname}`}</Text>
             <View style={tw`flex-row justify-between items-center py-[16px]`}>
               {profile.profilepicture ? (
@@ -48,6 +52,7 @@ export const Profile = ({ navigation }) => {
                   source={{
                     uri: `${profile.profilepicture}`,
                   }}
+                  resizeMode="cover"
                 />
               ) : (
                 <DefaultProfilePictureSVG />
@@ -82,20 +87,21 @@ export const Profile = ({ navigation }) => {
                 style={tw`text-footnote text-lightGray`}
               >{`${profile.location}`}</Text>
             )}
-            {profile.about && (
-              <Text style={tw`text-footnote`}>{`${profile.about}`}</Text>
+            {profile.bio && (
+              <Text style={tw`text-footnote`}>{`${profile.bio}`}</Text>
             )}
           </View>
           <Button
             label="Settings"
             labelStyle={tw`text-subheadline font-semibold`}
-            containerStyle={tw`py-[7px] rounded-[4px] mt-[8px]`}
+            containerStyle={tw`py-[7px] rounded-[4px] mt-[8px] mb-[16px]`}
             onPress={() =>
               navigation.navigate("Settings", {
                 data: profile,
               })
             }
           />
+          <Post />
         </>
       ) : (
         <ActivityIndicator />

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, Alert, TouchableOpacity } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -8,16 +9,15 @@ import tw from "src/lib/tailwind";
 import { Button } from "src/components/Button/Button";
 
 import { useLogOut } from "src/hooks/useLogOut";
-import { deleteUser } from "src/hooks/deleteUser";
+import { deleteUser } from "src/api/deleteUser";
 
 import DefaultProfilePictureSVG from "src/assets/default-profile-picture.svg";
 import ChevronRightSVG from "src/assets/chevron-right.svg";
 
 export const Settings = ({ navigation, route }) => {
+  const [image, setImage] = useState(null);
   const { data } = route.params;
   const { logout } = useLogOut();
-
-  console.log(data);
 
   handleLogout = () => {
     logout();
@@ -42,6 +42,22 @@ export const Settings = ({ navigation, route }) => {
         },
       ]
     );
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: false,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   return (
     <SafeAreaView style={tw`flex-1 bg-[#fafafa]`}>
@@ -76,10 +92,11 @@ export const Settings = ({ navigation, route }) => {
           <DefaultProfilePictureSVG />
         )}
         <Text
-          style={tw`text-footnote text-primary mt-[16px] font-semibold`}
+          style={tw`text-footnote text-primary mt-[16px] font-semibold opacity-50`}
+          // onPress={pickImage}
           onPress={() =>
             console.log(
-              "Open photos here, upload to some service, store url in database."
+              "Still need to work on this. Everything else is functional, just not refreshing. If you logout and log back in it shows changes."
             )
           }
         >
@@ -159,21 +176,26 @@ export const Settings = ({ navigation, route }) => {
             navigation.navigate("EditSettings", {
               header: "bio",
               userId: data._id,
-              data: data.about,
+              data: data.bio,
             })
           }
         >
           <Text style={tw`flex-1 text-callout`}>Bio</Text>
-          {data.about && (
+          {data.bio && (
             <Text style={tw`flex-1 text-callout text-right`} numberOfLines={1}>
-              {`${data.about}`}
+              {`${data.bio}`}
             </Text>
           )}
         </TouchableOpacity>
         <TouchableOpacity
-          style={tw`flex-row px-[16px] py-[16px] border-b border-b-lightGray6`}
+          style={tw`flex-row px-[16px] py-[16px] border-b border-b-lightGray6 opacity-50`}
+          // onPress={() =>
+          //   navigation.navigate("EditSettings", { header: "password" })
+          // }
           onPress={() =>
-            navigation.navigate("EditSettings", { header: "password" })
+            console.log(
+              "Still need to work on this. Everything else is functional, just not refreshing. If you logout and log back in it shows changes."
+            )
           }
         >
           <Text style={tw`flex-1 text-callout`}>Change Password</Text>
