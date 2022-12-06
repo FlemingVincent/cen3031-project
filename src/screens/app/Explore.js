@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, ScrollView, Text, TextInput, View } from "react-native";
+import {
+  Animated,
+  FlatList,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -8,6 +15,11 @@ import tw from "src/lib/tailwind";
 import MagnifyingGlassSVG from "src/assets/magnifying-glass.svg";
 import SearchUser from "src/components/SearchUser/SearchUser";
 import { getAllUsers } from "src/api/getAllUsers";
+
+// const tabTitles = {
+//   People: "People",
+//   Threads: "Threads",
+// };
 
 const DATA = [
   {
@@ -27,10 +39,35 @@ const DATA = [
     company: "",
   },
 ];
+// const dataX = Object.keys(tabTitles).map((i) => ({
+//   key: i,
+//   title: i,
+//   tab: tabTitles[i],
+// }));
+// const Tab = ({ item }) => {
+//   return (
+//     <View>
+//       <Text>{item.title}</Text>
+//     </View>
+//   );
+// };
+
+// const Tabs = ({ dataX, scrollX }) => {
+//   return (
+//     <View style={tw`flex items-center absolute: bottom-165`}>
+//       <View style={tw`justify-evenly flex flex-row`}>
+//         {dataX.map((item) => {
+//           return <Tab key={item.key} item={item} />;
+//         })}
+//       </View>
+//     </View>
+//   );
+// };
 
 export const Explore = () => {
   const [users, setUsers] = useState(null);
   const renderItem = ({ item }) => <SearchUser data={item} />;
+  // const scrollX = React.useRef(new Animated.Value(0)).current;
 
   const getUsers = async () => {
     const users = await getAllUsers();
@@ -65,6 +102,7 @@ export const Explore = () => {
           keyExtractor={(item) => item._id}
         />
       </View>
+      {/* <Tabs scrollX={scrollX} dataX={dataX} /> */}
     </SafeAreaView>
   );
 };
