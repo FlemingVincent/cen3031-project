@@ -11,7 +11,7 @@ import tw from "src/lib/tailwind";
 
 import Post from "src/components/Post/Post";
 
-import LogoSVG from "src/assets/logo.svg";
+import LogoSVG from "src/assets/Logo.svg";
 import PlusSquareSVG from "src/assets/plus-square.svg";
 
 import { useAuthContext } from "src/hooks/useAuthContext";
