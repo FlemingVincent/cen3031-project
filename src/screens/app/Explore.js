@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, ScrollView, Text, TextInput, View } from "react-native";
+import { FlatList, Text, TextInput, View } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -8,25 +8,6 @@ import tw from "src/lib/tailwind";
 import MagnifyingGlassSVG from "src/assets/magnifying-glass.svg";
 import SearchUser from "src/components/SearchUser/SearchUser";
 import { getAllUsers } from "src/api/getAllUsers";
-
-const DATA = [
-  {
-    id: "63692955122fdaae4a33b983",
-    firstname: "Kevin",
-    lastname: "Ochoa",
-    profilepicture: "",
-    role: "Student",
-    company: "UF",
-  },
-  {
-    id: "6384cd0a2bff47b9ccee59e2",
-    firstname: "Aaron",
-    lastname: "Bermudez",
-    profilepicture: "",
-    role: "",
-    company: "",
-  },
-];
 
 export const Explore = () => {
   const [users, setUsers] = useState(null);

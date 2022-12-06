@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, Image, Alert, TouchableOpacity } from "react-native";
-import * as ImagePicker from "expo-image-picker";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -15,11 +14,10 @@ import DefaultProfilePictureSVG from "src/assets/default-profile-picture.svg";
 import ChevronRightSVG from "src/assets/chevron-right.svg";
 
 export const Settings = ({ navigation, route }) => {
-  const [image, setImage] = useState(null);
   const { data } = route.params;
   const { logout } = useLogOut();
 
-  handleLogout = () => {
+  const handleLogout = () => {
     logout();
   };
 
@@ -42,22 +40,6 @@ export const Settings = ({ navigation, route }) => {
         },
       ]
     );
-
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: false,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
-  };
 
   return (
     <SafeAreaView style={tw`flex-1 bg-[#fafafa]`}>

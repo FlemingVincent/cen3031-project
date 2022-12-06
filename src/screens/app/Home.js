@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  FlatList,
-  ScrollView,
-} from "react-native";
+import { View, TouchableOpacity, FlatList } from "react-native";
 
 import tw from "src/lib/tailwind";
 
@@ -20,12 +14,11 @@ import { fetchPosts } from "src/api/fetchPosts";
 export const Home = ({ navigation }) => {
   const { user } = useAuthContext();
   const [feed, setFeed] = useState(null);
-  const [error, setError] = useState("");
 
   const fetchFeed = async () => {
     const data = await fetchPosts(user.userId);
     if (data.error) {
-      setError(data.error);
+      console.log(data.error);
     } else {
       setFeed(data);
     }

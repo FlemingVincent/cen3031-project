@@ -27,12 +27,11 @@ export const Profile = ({ navigation }) => {
   const { user } = useAuthContext();
   const [profile, setProfile] = useState(null);
   const [posts, setPosts] = useState(null);
-  const [error, setError] = useState("");
 
   const fetchUser = async () => {
     const data = await getUser(user.userId);
     if (data.error) {
-      setError(data.error);
+      console.log(data.error);
     } else {
       setProfile(data);
     }
@@ -44,7 +43,6 @@ export const Profile = ({ navigation }) => {
       setError(postData.error);
     } else {
       setPosts(postData);
-      // console.log(postData);
     }
   };
 
