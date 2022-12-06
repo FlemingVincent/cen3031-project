@@ -10,7 +10,7 @@ import tw from "src/lib/tailwind";
 import { useAuthContext } from "src/hooks/useAuthContext";
 import { createPost } from "src/api/createPost";
 
-const NewPost = ({ navigation }) => {
+export const NewPost = ({ navigation }) => {
   const { user } = useAuthContext();
   const [body, setBody] = useState("");
 
@@ -54,5 +54,3 @@ const NewPost = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-export default NewPost;

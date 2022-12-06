@@ -7,7 +7,7 @@ import tw from "src/lib/tailwind";
 
 import { Button } from "src/components/Button/Button";
 
-import BackgroundLogoSVG from "src/assets/BackgroundLogo.svg";
+import BackgroundLogoSVG from "src/assets/background-logo.svg";
 import LogoSVG from "src/assets/logo.svg";
 
 export const Welcome = ({ navigation }) => {
