@@ -7,18 +7,15 @@ import HomeFocusedSVG from "src/assets/home-focused.svg";
 import HomeUnfocusedSVG from "src/assets/home-unfocused.svg";
 import ExploreFocusedSVG from "src/assets/explore-focused.svg";
 import ExploreUnfocusedSVG from "src/assets/explore-unfocused.svg";
-import ActivityFocusedSVG from "src/assets/activity-focused.svg";
-import ActivityUnfocusedSVG from "src/assets/activity-unfocused.svg";
 import ProfileFocusedSVG from "src/assets/profile-focused.svg";
 import ProfileUnfocusedSVG from "src/assets/profile-unfocused.svg";
 
 import { Home } from "src/screens/app/Home";
 import { Explore } from "src/screens/app/Explore";
-import { Activity } from "src/screens/app/Activity";
 import { Profile } from "src/screens/app/Profile";
 import { Settings } from "src/screens/app/profile/Settings";
 import { EditSettings } from "src/screens/app/profile/EditSettings";
-import NewPost from "src/screens/app/home/NewPost";
+import { NewPost } from "src/screens/app/home/NewPost";
 
 const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -56,14 +53,6 @@ const AppTabs = () => {
         options={{
           tabBarIcon: ({ focused }) =>
             focused ? <ExploreFocusedSVG /> : <ExploreUnfocusedSVG />,
-        }}
-      />
-      <Tabs.Screen
-        name="Activity"
-        component={Activity}
-        options={{
-          tabBarIcon: ({ focused }) =>
-            focused ? <ActivityFocusedSVG /> : <ActivityUnfocusedSVG />,
         }}
       />
       <Tabs.Screen
